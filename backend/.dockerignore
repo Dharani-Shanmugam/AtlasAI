@@ -1,0 +1,7 @@
+# Backend
+.venv/
+__pycache__/
+*.pyc
+data/
+*.log
+.env
