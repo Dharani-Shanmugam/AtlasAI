@@ -36,9 +36,12 @@ services:
   # ── Frontend (Next.js) ────────────────────────────────────────
   - type: web
     name: atlas-frontend
-    runtime: docker
-    dockerfilePath: Dockerfile.frontend
+    runtime: node
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm start
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://atlas-backend.onrender.com
+      - key: NODE_ENV
+        value: production
     healthCheckPath: /
