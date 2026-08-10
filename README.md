@@ -126,7 +126,7 @@ npm run dev
 | `GROQ_API_KEY` | — | Your Groq API key (required) |
 | `GROQ_BASE_URL` | `https://api.groq.com/openai/v1` | LLM endpoint |
 | `GROQ_MODEL` | `llama-3.3-70b-versatile` | Model to use |
-| `LLM_TEMPERATURE` | `0.4` | Generation temperature |
+| `LLM_TEMPERATURE` | `0.0` | Generation temperature |
 | `EMBEDDING_MODEL` | `BAAI/bge-small-en-v1.5` | Local embedding model |
 | `DATABASE_URL` | `sqlite+aiosqlite:///./data/atlas.db` | Database connection |
 | `RETRIEVAL_TOP_K` | `5` | Number of chunks to retrieve |
