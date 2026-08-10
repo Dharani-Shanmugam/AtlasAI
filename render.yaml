@@ -1,0 +1,46 @@
+services:
+  # ── Backend (Python/FastAPI) ──────────────────────────────────
+  - type: web
+    name: atlas-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: GROQ_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///./data/atlas.db
+      - key: DATA_DIR
+        value: /app/data
+      - key: CORS_ORIGINS
+        value: https://atlas-frontend.onrender.com
+      - key: LLM_TEMPERATURE
+        value: "0.4"
+      - key: EMBEDDING_MODEL
+        value: BAAI/bge-small-en-v1.5
+      - key: RETRIEVAL_TOP_K
+        value: "5"
+      - key: CHUNK_SIZE
+        value: "800"
+      - key: CHUNK_OVERLAP
+        value: "150"
+    disk:
+      name: atlas-data
+      mountPath: /app/data
+      sizeGB: 1
+    healthCheckPath: /health
+
+  # ── Frontend (Next.js) ────────────────────────────────────────
+  - type: web
+    name: atlas-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://atlas-backend.onrender.com
+    healthCheckPath: /

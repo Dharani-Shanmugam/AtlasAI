@@ -2,10 +2,13 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install dependencies first for better layer caching.
+# Install only production dependencies.
 COPY pyproject.toml ./
 COPY app ./app
-RUN pip install --no-cache-dir ".[dev]"
+RUN pip install --no-cache-dir .
+
+# Create data directory for SQLite + ChromaDB.
+RUN mkdir -p /app/data
 
 EXPOSE 8000
 

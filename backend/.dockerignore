@@ -1,7 +1,10 @@
-# Backend
 .venv/
 __pycache__/
 *.pyc
 data/
 *.log
 .env
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+tests/
