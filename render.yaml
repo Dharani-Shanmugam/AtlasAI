@@ -3,8 +3,7 @@ services:
   - type: web
     name: atlas-backend
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    dockerfilePath: Dockerfile
     envVars:
       - key: GROQ_API_KEY
         sync: false
@@ -38,8 +37,7 @@ services:
   - type: web
     name: atlas-frontend
     runtime: docker
-    dockerfilePath: ./frontend/Dockerfile
-    dockerContext: ./frontend
+    dockerfilePath: Dockerfile.frontend
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://atlas-backend.onrender.com

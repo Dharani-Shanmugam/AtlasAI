@@ -3,8 +3,8 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Install only production dependencies.
-COPY pyproject.toml ./
-COPY app ./app
+COPY backend/pyproject.toml ./
+COPY backend/app ./app
 RUN pip install --no-cache-dir .
 
 # Create data directory for SQLite + ChromaDB.
